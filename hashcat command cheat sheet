@@ -14,8 +14,8 @@ dictionary lists: https://github.com/danielmiessler/SecLists/tree/master/Passwor
 ./hashcat -m 1000 linkedin.sample.ntlm -o example.cracked -a 1 rockyou.txt rockyou.txt
 
 - hybrid attack
-./hashcat -m 1000 linkedin.sample.ntlm -o example.cracked -a 6 rockyou ?a?a?a?a
-./hashcat -m 1000 linkedin.sample.ntlm -o example.cracked –a 7 ?a?a?a?a rockyou
+./hashcat -m 1000 linkedin.sample.ntlm -o example.cracked -a 6 rockyou ?d?s
+./hashcat -m 1000 linkedin.sample.ntlm -o example.cracked –a 7 ?u?l rockyou
 
 - rule attack
 hashcat -m 1000 linkedin.sample.ntlm -o example.cracked -r rules/best64.rule rockyou.txt
