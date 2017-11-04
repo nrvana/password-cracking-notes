@@ -1,0 +1,33 @@
+hashcat commands
+
+- OSX GPU fix. Add this with your hashcat command if you are getting "Abort Trap 6" errors.
+./hashcat -d 2 -u 1 --force ...
+
+- dictionary attack
+dictionary lists: https://github.com/danielmiessler/SecLists/tree/master/Passwords
+./hashcat -m 1000 linkedin.sample.ntlm -o example.cracked rockyou.txt
+
+- brute force attack
+./hashcat -m 1000 linkedin.sample.ntlm -o example.cracked -a 3 ?u?l?l?l?l?l?d?d
+
+- combinator attack
+./hashcat -m 1000 linkedin.sample.ntlm -o example.cracked -a 1 rockyou.txt rockyou.txt
+
+- hybrid attack
+./hashcat -m 1000 linkedin.sample.ntlm -o example.cracked -a 6 rockyou ?a?a?a?a
+./hashcat -m 1000 linkedin.sample.ntlm -o example.cracked –a 7 ?a?a?a?a rockyou
+
+- rule attack
+hashcat -m 1000 linkedin.sample.ntlm -o example.cracked -r rules/best64.rule rockyou.txt
+
+statistical analysis and strategic cracking
+PACK - https://github.com/iphelix/pack
+
+./statsgen.py passwords.txt -o example.masks
+
+- use new mask with a brute force attack
+./hashcat -m 1000 linkedin.sample.ntlm -o example.cracked -a 3 example.masks
+
+./maskgen.py example.masks --targettime 300 --optindex –q --pps 9000000 -o example2.masks
+
+./policygen.py --minlength 8 --maxlength 10 --minlower 1 --minupper 1 --mindigit 1 --minspecial 1 --pps 9000000 -o example2.masks
